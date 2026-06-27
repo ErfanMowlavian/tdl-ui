@@ -27,14 +27,14 @@ Drive `tdl` from your browser instead of the terminal: log in, browse chats, que
 
 ## Tech stack
 
-Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite · Server-Sent Events · pnpm
+Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite (built-in `node:sqlite`) · Server-Sent Events · Vitest · pnpm
 
 ## Status
 
 | Phase | Feature                 | Status     |
 | ----- | ----------------------- | ---------- |
 | 1     | Scaffold & app shell    | ✅ Done    |
-| 2     | tdl adapter + mock mode | ⏳ Planned |
+| 2     | tdl adapter + mock mode | ✅ Done    |
 | 3     | Login & sessions        | ⏳ Planned |
 | 4     | Download                | ⏳ Planned |
 | 5     | Browse & export chats   | ⏳ Planned |
@@ -42,7 +42,7 @@ Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite · Ser
 
 ## Development
 
-**Requirements:** [Node.js](https://nodejs.org/) 20+ and [pnpm](https://pnpm.io/) 9+.
+**Requirements:** [Node.js](https://nodejs.org/) 22+ (for the built-in `node:sqlite`) and [pnpm](https://pnpm.io/) 9+.
 
 ```bash
 pnpm install      # install dependencies
@@ -56,10 +56,28 @@ pnpm build        # production build
 pnpm start        # serve the production build
 pnpm lint         # eslint
 pnpm typecheck    # tsc --noEmit
+pnpm test         # vitest
 pnpm format       # prettier --write .
 ```
 
-> Connecting a real Telegram session additionally requires the [`tdl`](https://github.com/iyear/tdl) binary on your `PATH`. The UI and navigation run without it.
+## Configuration
+
+Configuration is read from environment variables; copy `.env.example` to
+`.env.local` to override defaults. The most useful one is the adapter mode:
+
+- **`TDL_MODE=real`** (default) — spawn the actual `tdl` binary. Connecting a
+  real Telegram session requires [`tdl`](https://github.com/iyear/tdl) on your
+  `PATH`.
+- **`TDL_MODE=mock`** — simulate tdl with no binary and no Telegram account.
+  The whole UI works end-to-end, which is how CI runs and the quickest way to
+  try the app:
+
+  ```bash
+  TDL_MODE=mock pnpm dev
+  ```
+
+Other variables (`TDL_BIN`, `TDL_DATA_DIR`, `TDL_DOWNLOAD_DIR`) are documented
+in `.env.example`.
 
 ## Disclaimer
 
