@@ -16,6 +16,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getSessionService } from "@/lib/sessions/service";
+
+export const dynamic = "force-dynamic";
 
 const quickLinks = [
   {
@@ -39,6 +42,9 @@ const quickLinks = [
 ];
 
 export default function DashboardPage() {
+  const sessions = getSessionService().listSessions();
+  const connected = sessions.filter((s) => s.status === "connected").length;
+
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
@@ -46,8 +52,14 @@ export default function DashboardPage() {
         description="A local control panel for the tdl Telegram toolkit."
         actions={
           <Badge variant="outline" className="gap-1.5">
-            <span className="bg-muted-foreground size-1.5 rounded-full" />
-            No session connected
+            <span
+              className={`size-1.5 rounded-full ${
+                connected > 0 ? "bg-emerald-500" : "bg-muted-foreground"
+              }`}
+            />
+            {connected > 0
+              ? `${connected} session${connected > 1 ? "s" : ""} connected`
+              : "No session connected"}
           </Badge>
         }
       />
