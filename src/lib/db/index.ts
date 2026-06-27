@@ -18,6 +18,15 @@ CREATE TABLE IF NOT EXISTS jobs (
   updated_at  INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_jobs_created_at ON jobs (created_at DESC);
+
+CREATE TABLE IF NOT EXISTS sessions (
+  namespace   TEXT PRIMARY KEY,
+  label       TEXT,
+  status      TEXT NOT NULL,
+  account     TEXT,
+  created_at  INTEGER NOT NULL,
+  updated_at  INTEGER NOT NULL
+);
 `;
 
 function open(dbPath: string): DatabaseSync {
