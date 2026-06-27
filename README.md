@@ -31,14 +31,35 @@ Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite · Ser
 
 ## Status
 
-| Phase | Feature | Status |
-| ----- | ------- | ------ |
-| 1 | Scaffold & app shell | 🚧 In progress |
-| 2 | tdl adapter + mock mode | ⏳ Planned |
-| 3 | Login & sessions | ⏳ Planned |
-| 4 | Download | ⏳ Planned |
-| 5 | Browse & export chats | ⏳ Planned |
-| 6 | Upload & forward | ⏳ Planned |
+| Phase | Feature                 | Status     |
+| ----- | ----------------------- | ---------- |
+| 1     | Scaffold & app shell    | ✅ Done    |
+| 2     | tdl adapter + mock mode | ⏳ Planned |
+| 3     | Login & sessions        | ⏳ Planned |
+| 4     | Download                | ⏳ Planned |
+| 5     | Browse & export chats   | ⏳ Planned |
+| 6     | Upload & forward        | ⏳ Planned |
+
+## Development
+
+**Requirements:** [Node.js](https://nodejs.org/) 20+ and [pnpm](https://pnpm.io/) 9+.
+
+```bash
+pnpm install      # install dependencies
+pnpm dev          # start the dev server at http://localhost:3000
+```
+
+Other scripts:
+
+```bash
+pnpm build        # production build
+pnpm start        # serve the production build
+pnpm lint         # eslint
+pnpm typecheck    # tsc --noEmit
+pnpm format       # prettier --write .
+```
+
+> Connecting a real Telegram session additionally requires the [`tdl`](https://github.com/iyear/tdl) binary on your `PATH`. The UI and navigation run without it.
 
 ## Disclaimer
 
