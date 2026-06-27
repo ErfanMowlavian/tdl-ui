@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Local data (SQLite, downloads, tdl sessions)
+*.sqlite
+*.sqlite3
+*.db
+/data/
+/downloads/
+
+# Environment
+.env
+.env*.local
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Testing / coverage
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
