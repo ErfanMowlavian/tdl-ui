@@ -31,14 +31,14 @@ Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite (built
 
 ## Status
 
-| Phase | Feature                 | Status     |
-| ----- | ----------------------- | ---------- |
-| 1     | Scaffold & app shell    | ✅ Done    |
-| 2     | tdl adapter + mock mode | ✅ Done    |
-| 3     | Login & sessions        | ✅ Done    |
-| 4     | Download                | ✅ Done    |
-| 5     | Browse & export chats   | ✅ Done    |
-| 6     | Upload & forward        | ⏳ Planned |
+| Phase | Feature                 | Status  |
+| ----- | ----------------------- | ------- |
+| 1     | Scaffold & app shell    | ✅ Done |
+| 2     | tdl adapter + mock mode | ✅ Done |
+| 3     | Login & sessions        | ✅ Done |
+| 4     | Download                | ✅ Done |
+| 5     | Browse & export chats   | ✅ Done |
+| 6     | Upload & forward        | ✅ Done |
 
 ## Development
 
