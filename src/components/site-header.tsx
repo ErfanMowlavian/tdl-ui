@@ -36,6 +36,7 @@ export function SiteHeader() {
             variant="ghost"
             size="icon"
             aria-label="GitHub repository"
+            nativeButton={false}
             render={
               <Link
                 href="https://github.com/ErfanMowlavian/tdl-ui"

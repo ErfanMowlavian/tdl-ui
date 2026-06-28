@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CliLogin } from "@/components/sessions/cli-login";
 import { DesktopLogin } from "@/components/sessions/desktop-login";
 import { QrLogin } from "@/components/sessions/qr-login";
 import { SessionsList } from "@/components/sessions/sessions-list";
@@ -41,15 +42,20 @@ export function SessionsManager({
         <CardHeader>
           <CardTitle>Connect a session</CardTitle>
           <CardDescription>
-            Authenticate tdl with a QR code or by importing Telegram Desktop.
+            Log in with the tdl CLI and connect it here. (In-browser QR and
+            desktop import are experimental — see the CLI tab.)
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="qr">
+          <Tabs defaultValue="cli">
             <TabsList>
+              <TabsTrigger value="cli">CLI session</TabsTrigger>
               <TabsTrigger value="qr">QR code</TabsTrigger>
               <TabsTrigger value="desktop">Desktop import</TabsTrigger>
             </TabsList>
+            <TabsContent value="cli" className="pt-4">
+              <CliLogin onConnected={onConnected} />
+            </TabsContent>
             <TabsContent value="qr" className="pt-4">
               <QrLogin onConnected={onConnected} />
             </TabsContent>

@@ -44,6 +44,16 @@ describe("SessionService", () => {
     });
   });
 
+  it("connects an existing CLI session when the namespace is authenticated", async () => {
+    const service = makeService();
+    const result = await service.connectExisting("cli-ns");
+
+    expect(result.ok).toBe(true);
+    expect(service.listSessions().some((s) => s.namespace === "cli-ns")).toBe(
+      true,
+    );
+  });
+
   it("captures a QR url and connects via QR login", async () => {
     const service = makeService();
     const initial = service.startQrLogin("qr1");

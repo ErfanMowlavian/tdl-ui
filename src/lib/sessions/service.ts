@@ -69,6 +69,30 @@ export class SessionService {
     return { ok: false, error: failureMessage(result.code, result.stderr) };
   }
 
+  /**
+   * Connect a session that was already authenticated with the tdl CLI
+   * (`tdl login` in a real terminal). tdl's login is interactive and needs a
+   * TTY, which a web server can't provide — but it stores sessions on disk, so
+   * we verify the namespace is authenticated (a `chat ls` succeeds) and record
+   * it for use across the app.
+   */
+  async connectExisting(namespace: string): Promise<DesktopLoginResult> {
+    const result = await this.adapter.run({
+      args: ["chat", "ls", "-o", "json", "-n", namespace],
+    }).done;
+    if (result.code === 0) {
+      this.repo.upsert({ namespace, status: "connected", now: Date.now() });
+      return { ok: true, error: null };
+    }
+    return {
+      ok: false,
+      error:
+        "That namespace isn't logged in yet. Run `tdl login -n " +
+        namespace +
+        "` in your terminal first.",
+    };
+  }
+
   /** Begin a QR login. Progress is delivered via {@link subscribeQr}. */
   startQrLogin(namespace: string): QrLoginState {
     this.cancelQrLogin(namespace);

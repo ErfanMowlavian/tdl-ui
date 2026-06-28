@@ -29,7 +29,7 @@ export class ChatService {
   async listChats(namespace: string): Promise<Chat[]> {
     const lines: string[] = [];
     const handle = this.adapter.run({
-      args: ["chat", "ls", "-n", namespace],
+      args: ["chat", "ls", "-o", "json", "-n", namespace],
       onLog: (line) => lines.push(line),
     });
     const result = await handle.done;
