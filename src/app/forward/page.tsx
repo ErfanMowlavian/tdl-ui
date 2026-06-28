@@ -1,17 +1,21 @@
 import { PageHeader } from "@/components/page-header";
-import { ComingSoon } from "@/components/coming-soon";
+import { ForwardManager } from "@/components/forwards/forward-manager";
+import { getSessionService } from "@/lib/sessions/service";
+import { getJobManager } from "@/lib/jobs/manager";
 
-export default function ForwardPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ForwardPage() {
+  const sessions = getSessionService().listSessions();
+  const jobs = getJobManager().list();
+
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Forward"
         description="Forward messages between chats with automatic fallback and routing."
       />
-      <ComingSoon phase="Phase 6 — Upload & forward">
-        Route messages from one chat to another, with the same job tracking as
-        downloads and uploads.
-      </ComingSoon>
+      <ForwardManager initialSessions={sessions} initialJobs={jobs} />
     </div>
   );
 }
