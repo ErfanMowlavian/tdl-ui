@@ -37,7 +37,7 @@ Next.js (App Router) · TypeScript · Tailwind CSS · shadcn/ui · SQLite (built
 | 2     | tdl adapter + mock mode | ✅ Done    |
 | 3     | Login & sessions        | ✅ Done    |
 | 4     | Download                | ✅ Done    |
-| 5     | Browse & export chats   | ⏳ Planned |
+| 5     | Browse & export chats   | ✅ Done    |
 | 6     | Upload & forward        | ⏳ Planned |
 
 ## Development
