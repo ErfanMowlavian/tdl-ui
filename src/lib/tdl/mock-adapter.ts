@@ -48,6 +48,9 @@ export class MockTdlAdapter implements TdlAdapter {
 
   run(options: RunOptions): RunHandle {
     if (options.args[0] === "login") return this.runLogin(options);
+    if (options.args[0] === "chat" && options.args.includes("ls")) {
+      return this.runChatList(options);
+    }
     return this.runProgress(options);
   }
 
@@ -90,6 +93,21 @@ export class MockTdlAdapter implements TdlAdapter {
       cancel: () => settle?.({ code: null, canceled: true, stderr: "" }),
       done,
     };
+  }
+
+  private runChatList(options: RunOptions): RunHandle {
+    const done = Promise.resolve({
+      code: 0,
+      canceled: false,
+      stderr: "",
+    } as RunResult);
+    const chats = [
+      { id: "1001", type: "channel", title: "Mock Channel" },
+      { id: "1002", type: "group", title: "Mock Group" },
+      { id: "1003", type: "user", title: "Mock User" },
+    ];
+    options.onLog?.(JSON.stringify(chats));
+    return { cancel: () => {}, done };
   }
 
   private runProgress(options: RunOptions): RunHandle {
