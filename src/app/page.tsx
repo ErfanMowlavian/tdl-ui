@@ -78,6 +78,7 @@ export default function DashboardPage() {
               <Button
                 variant="secondary"
                 size="sm"
+                nativeButton={false}
                 render={<Link href={link.href} />}
               >
                 Open
@@ -99,7 +100,11 @@ export default function DashboardPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button size="sm" render={<Link href="/login" />}>
+          <Button
+            size="sm"
+            nativeButton={false}
+            render={<Link href="/login" />}
+          >
             <KeyRoundIcon className="size-4" />
             Connect a session
           </Button>
