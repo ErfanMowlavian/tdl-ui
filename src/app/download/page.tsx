@@ -1,17 +1,21 @@
 import { PageHeader } from "@/components/page-header";
-import { ComingSoon } from "@/components/coming-soon";
+import { DownloadManager } from "@/components/downloads/download-manager";
+import { getSessionService } from "@/lib/sessions/service";
+import { getJobManager } from "@/lib/jobs/manager";
 
-export default function DownloadPage() {
+export const dynamic = "force-dynamic";
+
+export default async function DownloadPage() {
+  const sessions = getSessionService().listSessions();
+  const jobs = getJobManager().list();
+
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Download"
         description="Download files from message links or whole chats, with threads, filters, and live progress."
       />
-      <ComingSoon phase="Phase 4 — Download">
-        Queue downloads from links or exports, tune concurrency and filters, and
-        watch live progress streamed from tdl.
-      </ComingSoon>
+      <DownloadManager initialSessions={sessions} initialJobs={jobs} />
     </div>
   );
 }
