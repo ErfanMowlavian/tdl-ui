@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a problem with tdl-ui
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See error
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      description: Were you running in mock or real mode?
+      options:
+        - mock
+        - real
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node.js version, and (if real mode) tdl version.
+      placeholder: |
+        OS: macOS 15
+        Node: 24.x
+        tdl: v0.x.x
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant server console output or browser console errors.
+      render: shell
+    validations:
+      required: false
